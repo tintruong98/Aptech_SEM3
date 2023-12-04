@@ -1,0 +1,46 @@
+﻿@model RailwaySystem.Models.Disprice
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3 class="alert-success">Add new Disprice</h3>
+<br />
+<a href="@Url.Action("ListDisprice", "Disprice")">
+    <span class="btn btn-outline-primary">Back</span>
+</a>
+<hr />
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Source" class="control-label"></label>
+                <select asp-for="Source" asp-items="ViewBag.arr">
+                    <option>---Selected---</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destination" class="control-label"></label>
+                <select asp-for="Destination" asp-items="ViewBag.dep">
+                    <option>---Selected---</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

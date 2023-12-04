@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RailwaySystem.Models.TotalSeats>
+
+@{
+    ViewData["Title"] = "SeatStatistics";
+}
+<link rel="stylesheet" href="~/css/TableDisprice.css" />
+<h3 class="alert-info">&nbsp;&nbsp;Statistics</h3>
+<hr />
+
+<a href="@Url.Action("Quantri", "LoginDetails")">
+    <span class="btn btn-outline-success">Back</span>
+</a>
+
+<div>
+    <form asp-action="SeatStatistics" asp-controller="Statistics">
+        <label>From&nbsp;&nbsp;</label>
+        <input id="Text1" name="FromDate" type="date" />
+        <label>&nbsp;&nbsp;To&nbsp;&nbsp;</label>
+        <input id="Text2" name="ToDate" type="date" />
+        <input type="submit" value="Select" class="btn btn-outline-info" />
+    </form>
+</div>
+
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<hr />
+
+@if (ViewBag.Fromdate == ViewBag.ToDate)
+{
+    <h4 class="alert-success text-center">Statistics of seats sold on @ViewBag.Todate</h4>
+}
+else
+{
+    <h4 class="alert-success text-center">Statistics of seats sold from day @ViewBag.Fromdate to day @ViewBag.ToDate </h4>
+}
+<br />
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">@Html.DisplayNameFor(model => model.SeatCode)</div>
+            <div class="col col-2">@Html.DisplayNameFor(model => model.ClassName)</div>
+            <div class="col col-3">@Html.DisplayNameFor(model => model.SeatsTotal)</div>
+            <div class="col col-4">@Html.DisplayNameFor(model => model.PriceTotal)</div>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="table-row">
+                <div class="col col-1">@Html.DisplayFor(modelItem => item.SeatCode)</div>
+                <div class="col col-2">@Html.DisplayFor(modelItem => item.ClassName)</div>
+                <div class="col col-2">@Html.DisplayFor(modelItem => item.SeatsTotal)</div>
+                <div class="col col-3">
+                    @Html.DisplayFor(modelItem => item.PriceTotal)
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<table class="table" width="100%">
+    <tbody>
+        <tr>
+            <td colspan="3" align="center"><a class="btn btn-info btn-block" style="color:white"><strong>Total</strong></a></td>
+            <td align="left"><a class="btn btn-warning"><strong>@ViewBag.sum&nbsp;VNĐ</strong></a></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,124 @@
+﻿label {
+    display: inline-block;
+    max-width: 100%;
+}
+
+.carousel-inner > .carousel-item > img {
+    height: 200px;
+}
+
+.book-ticket-container {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 4px 4px 20px 1px hsla(0,0%,54.5%,.4);
+    background-color: white;
+    padding: 24px;
+    margin-bottom: 40px;
+    align-content:center;
+}
+.booking-select-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.place-select-container {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+}
+.auto-complete-place-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dce1e6;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: auto auto 10px;
+}
+.title {
+    font-size: 14px;
+    color: #637280;
+    margin-bottom: 4px;
+    text-align:center;
+}
+.select-place {
+    font-weight: 700;
+    text-align: center;
+}
+.data-list-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 105%;
+    background: #fff;
+    border: none;
+    z-index: 10000;
+    max-height: 300px;
+    overflow-y: scroll;
+    box-shadow: 0 10px 60px rgba(0,0,0,.3);
+    border-radius: 6px;
+}
+.change-img:hover {
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+.change-img {
+    width: 40px;
+    height: 40px;
+    -o-object-fit: contain;
+    object-fit: contain;
+    transition: .3s;
+    transform: rotate(0deg);
+    margin: 0 -10px 10px;
+    z-index: 1;
+}
+#search-button {
+    display: flex;
+    border-radius: 8px;
+    background-color: #ef5222;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
+    position: absolute;
+    right: 240px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    padding: 10px 16px;
+    top: 415px;
+}
+
+common-routes-container[data-v-9ae0c8e8] {
+    width: 100%;
+    font-family: SFProText;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.title[data-v-9ae0c8e8] {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: left;
+    width: inherit;
+    margin-bottom: 10px;
+    color: #f15a24;
+}
+.input[type=search] {
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    outline-offset: -2px;
+
+}

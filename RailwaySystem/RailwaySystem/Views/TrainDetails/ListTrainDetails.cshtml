@@ -1,0 +1,78 @@
+﻿@model IEnumerable<RailwaySystem.Models.TrainDetails>
+
+@{
+    ViewData["Title"] = "ListTrainDetails";
+}
+
+<h3 class="alert-success">List Train Details</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create", "TrainDetails")">
+        <span class="btn btn-outline-primary">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+<div>
+    <form asp-action="ListTrainDetails" asp-controller="TrainDetails">
+        <label>Search by TrainName&nbsp;&nbsp;</label>
+        <input type="text" name="varLocal" />
+        <input type="submit" value="Search" class="btn btn-outline-info" />
+    </form>
+</div>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if ((item.Departure - DateTime.Now).TotalMinutes < 30)
+                    {
+                        <a href="#" class="btn btn-outline-dark">Departed</a>
+                   }
+                    else
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { varLocal = item.TrainNo }, new { @class = "btn btn-outline-warning" })
+                        @Html.ActionLink("Delete", "Delete", new { varLocal = item.TrainNo }, new { @class = "btn btn-outline-danger" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

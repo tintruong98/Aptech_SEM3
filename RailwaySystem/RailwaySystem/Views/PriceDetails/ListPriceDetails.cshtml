@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RailwaySystem.Models.PriceDetails>
+
+@{
+    ViewData["Title"] = "ListPriceDetails";
+}
+
+<h3 class="alert-success">List Price of seat class</h3>
+<br />
+
+<p>
+    <a href="@Url.Action("Create", "PriceDetails")">
+        <span class="btn btn-outline-primary">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { varLocal = item.SeatCode }, new { @class = "btn btn-outline-warning" })
+                @Html.ActionLink("Delete", "Delete", new { varLocal = item.SeatCode }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

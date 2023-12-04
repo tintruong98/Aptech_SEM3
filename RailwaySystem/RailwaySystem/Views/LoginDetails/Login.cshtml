@@ -1,0 +1,49 @@
+﻿@model RailwaySystem.Models.LoginDetails
+
+@{
+    ViewBag.Title = "Sign in to Railway_Reservation_System";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Login Form Example</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
+    <link rel="stylesheet" href="~/css/style.css">
+    <style type="text/css">
+        .border_center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body style="background: #fff">
+    <!-- partial:index.partial.html -->
+    <div class="login-form">
+        <form asp-action="Login" asp-controller="LoginDetails" enctype="multipart/form-data" method="post" name="form1">
+            <h1>Login</h1>
+            <div class="content">
+                <div class="input-field">
+                    <input type="text" name="varUser" placeholder="Enter Username..." size=25 />
+                </div>
+                <div class="input-field">
+                    <input type="password" name="varPass" placeholder="Enter password..." size=25 />
+                </div>
+                <a href="@Url.Action("ResetPassword", "LoginDetails")" class="link">Forgot Your Password?</a>
+            </div>
+            <div class="action">
+                <a href="@Url.Action("Registration", "LoginDetails")" class="link btn-block text-center" style="color: black; font-family: 'Rubik', sans-serif ">REGISTER</a>
+                <button>Sign in</button>
+            </div>
+        </form>
+    </div>
+    <!-- partial -->
+    <script src="~/js/script.js"></script>
+    <div>
+        <br />
+        <h3 style="color:blue">@ViewBag.msg</h3>
+    </div>
+</body>
+
+

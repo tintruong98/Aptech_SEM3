@@ -1,0 +1,120 @@
+﻿@model IEnumerable<RailwaySystem.Models.PassengerDetails>
+
+@{
+    ViewData["Title"] = "ListPassengerDetails";
+}
+
+<h3 class="alert-success">List Passenger Details</h3>
+<br />
+<p>
+    @*<a href="@Url.Action("Create", "PassengerDetails")">
+            <span class="btn btn-primary btn-outline-primary">Add new</span>
+        </a>*@
+    <a href="#">
+        <span class="btn btn-outline-dark">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+<div>
+    <form asp-action="ListPassengerDetails" asp-controller="PassengerDetails">
+        <label>Search by Name&nbsp;&nbsp;</label>
+        <input type="text" name="varLocal" />
+        <input type="submit" value="Search" class="btn btn-outline-info" />
+    </form>
+</div>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PNR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Source)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PNR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.Gender)
+                    {<a>Male</a>}
+                    else
+                    {<a>Female</a>}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compartment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if ((item.Departure - DateTime.Now).TotalMinutes < 30)
+                    {
+                        <a href="#" class="btn btn-outline-dark">Departed</a>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { varLocal = item.PNR }, new { @class = "btn btn-outline-warning" })
+                        @Html.ActionLink("Delete", "Delete", new { varLocal = item.PNR }, new { @class = "btn btn-outline-danger" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

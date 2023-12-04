@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RailwaySystem</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/user.css" />
+    <link rel="stylesheet" href="~/css/usermenu.css" />
+    <link rel="shortcut icon" type="image/png" href="~/img/railway.ico" />
+</head>
+<style type="text/css">
+</style>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <img src="~/img/logonav.jpg" class="img-responsive" alt="" />
+               
+
+                <a>@ViewData["Date"]&nbsp;&nbsp;</a>
+
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PassengerDetails" asp-action="FindTrainList">Booking Ticket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("CancelTickets", "PassengerDetails",new {varLocal=ViewBag.userid})" class="nav-link text-dark">Cancellation of tickets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("PrintTickets", "PassengerDetails",new {varLocal=ViewBag.userid})" class="nav-link text-dark">Print ticket</a>
+                        </li>
+
+                        @*<li class="nav-item">
+                            <a href="@Url.Action("ListStationArr", "StationArr",new {varLocal=ViewBag.userid})" class="nav-link text-dark">Thu nghiem</a>
+                        </li>*@
+
+                    </ul>
+                </div>
+
+                <ul class="navbar-nav navbar-right">
+                    @if (!string.IsNullOrEmpty(ViewBag.username))
+                    {
+                        <li>
+                            <a href="#" class="nav-link">@ViewBag.name</a>
+                            <ul class="dropdown" id="menu2">
+                                <li><a href="@Url.Action("ChangePassword", "LoginDetails",new {varLocal=ViewBag.userid})" class="dropdown-toggle">Change the password</a></li>
+                                <li><a href="@Url.Action("ChangeInfo", "LoginDetails",new {varLocal=ViewBag.userid})" class="dropdown-toggle">Change information</a></li>
+                                @if (ViewBag.role == "True" || ViewBag.username == "ADMIN")
+                                {
+                                    <li><a href="@Url.Action("Quantri", "LoginDetails")" class="dropdown-toggle">System management</a></li>
+                                }
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a href="@Url.Action("Logout", "LoginDetails")" class="dropdown-toggle">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Login", "LoginDetails")" class="nav-link">Login</a></li>
+                        <li><a href="@Url.Action("Registration", "LoginDetails")" class="nav-link">Register</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - RailwaySystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,929 @@
+﻿@model IEnumerable<RailwaySystem.Models.TrainDetails>
+@{ ViewData["Title"] = "Home Page"; }
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.tooplate.com/templates/2093_flight/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 May 2018 10:39:09 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--
+
+    Template 2093 Flight
+
+    http://www.tooplate.com/view/2093-flight
+
+    -->
+    <title>TAY - RailWay</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.html">
+
+
+    <link rel="stylesheet" href="~/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/css/fontAwesome.css">
+    <link rel="stylesheet" href="~/css/hero-slider.css">
+    <link rel="stylesheet" href="~/css/owl-carousel.css">
+    <link rel="stylesheet" href="~/css/datepicker.css">
+    <link rel="stylesheet" href="~/css/tooplate-style.css">
+    <link rel="stylesheet" href="~/css/TableIndex.css">
+    <link rel="Shortcut Icon" href="img/logo-i.png" type="img/x-icon" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <script src="~/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body style="font-size:small">
+    <section class="banner" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="left-side">
+                        <div class="logo">
+                            <img src="~/img/logo.png" alt="Flight Template">
+                        </div>
+                        <div class="tabs-content">
+                            <h4>Choose Your Direction:</h4>
+                            <ul class="social-links">
+                                <li><a href="https://www.facebook.com/">Find us on <em>Facebook</em></a></li>
+                                <li><a href="http://youtube.com/">Our <em>YouTube</em> Channel</a></li>
+                                <li><a href="http://instagram.com/">Follow our <em>instagram</em></a></li>
+                            </ul>
+                        </div>
+                        <div class="page-direction-button">
+                            <a asp-action="contact"><i class="fa fa-phone"></i>Contact Us Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <section id="first-tab-group" class="tabgroup">
+                        <div id="tab1">
+                            <div class="submit-form">
+                                <h4>Check availability for <em>direction</em>:</h4>
+                                <form id="form-submit" action="#" method="get">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="from">From:</label>
+                                                <select name="varLocal" asp-items="ViewBag.arr" class="select-place text-left" data-v-0fbb772c="">
+                                                    <option>Choose your start point...</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <label for="to">To:</label>
+                                                <select name="varLocal2" asp-items="ViewBag.dep" class="select-place text-left" data-v-0fbb772c="">
+                                                    <option>Choose your end point...</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                @*<label for="departure">Departure date:</label>
+                                                    <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="" onchange='this.form.()'>*@
+                                                <div class="auto-complete-place-container">
+                                                    <label for="select_date" class="title" data-v-0fbb772c="">Date</label>
+                                                    <input id="Text1" name="departure" type="date" class="select-place" data-v-0fbb772c="" />
+
+
+                                                    @*<input id="select_date" placeholder="Date to depart: yy-mm-dd" type="search" autocomplete="off" class="select-place" data-v-0fbb772c="">*@
+                                                    <div class="data-list-container hide right">
+                                                        <ul class="place-list">
+                                                            <li class="place-list-item">
+
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        @*<div class="col-md-6">
+                                                <fieldset>
+                                                    <label for="return">Return date:</label>
+                                                    <input name="return" type="text" class="form-control date" id="return" placeholder="Select date..." required="" onchange='this.form.()'>
+                                                </fieldset>
+                                            </div>*@
+                                        @*<div class="col-md-6">
+                                                <div class="radio-select">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <label for="round">Round</label>
+                                                            <input type="radio" name="trip" id="round" value="round" required="required" onchange='this.form.()'>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <label for="oneway">Oneway</label>
+                                                            <input type="radio" name="trip" id="oneway" value="one-way" required="required" onchange='this.form.()'>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                @*<button type="submit"  value="Search" id="form-submit" class="btn">Search</button>*@
+                                                @*<input type="submit" value="Search" class="btn btn-danger" />*@
+                                                <div class="auto-complete-place-container">
+                                                    <p></p>
+                                                    <div class="data-list-container hide right">
+                                                        <ul class="place-list">
+                                                            <li class="place-list-item">
+                                                            </li>
+                                                            <li class="place-list-item">
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <input type="submit" value="Search" class="btn btn-outline-success btn-lg btn-block" />
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*CHọn ga tàu*@
+    <!--<div>
+    <form asp-action="Index" asp-controller="Home" enctype="multipart/form-data" method="post">
+        <div class="book-ticket-container">
+            <div class="booking-select-box-container">
+                <div class="place-select-container">
+                    <div class="auto-complete-place-container place-select-from" data-v-0fbb772c="" data-v-0252c03c="">
+                        <label for="select_origin" class="title" data-v-0fbb772c="">From</label>
+                        <select name="varLocal" asp-items="ViewBag.arr" class="select-place text-left" data-v-0fbb772c="">
+                            <option>Choose your start point...</option>
+                        </select>-->
+    @*<input id="select_origin" placeholder="Choose your start point..." type="search" autocomplete="off" class="select-place" data-v-0fbb772c="">
+        <div class="data-list-container hide left">
+            <ul class="place-list">
+                <li class="place-list-item">
+
+                </li>
+            </ul>
+        </div>*@
+    <!--</div>
+    <div>
+        <img src="~/images/selectbox2.png" alt="change" width="30" height="30" class="change-img center" />
+    </div>
+    <div class="auto-complete-place-container">
+        <label for="select_destination" class="title" data-v-0fbb772c="">To</label>
+        <select name="varLocal2" asp-items="ViewBag.dep" class="select-place text-left" data-v-0fbb772c="">
+            <option>Choose your end point...</option>
+        </select>-->
+    @*<input id="select_destination" placeholder="Choose your end point..." type="search" autocomplete="off" class="select-place" data-v-0fbb772c="">
+        <div class="data-list-container hide right">
+            <ul class="place-list">
+                <li class="place-list-item">
+
+                </li>
+            </ul>
+        </div>*@
+    <!--</div>
+    <div>
+        <img src="~/images/selectbox2.png" alt="change" width="30" height="30" class="change-img center" />
+    </div>
+    <div class="auto-complete-place-container">
+        <label for="select_date" class="title" data-v-0fbb772c="">Date</label>
+        <input id="Text1" name="departure" type="date" class="select-place" data-v-0fbb772c="" />-->
+    @*<input id="select_date" placeholder="Date to depart: yy-mm-dd" type="search" autocomplete="off" class="select-place" data-v-0fbb772c="">
+        <div class="data-list-container hide right">
+            <ul class="place-list">
+                <li class="place-list-item">
+
+                </li>
+            </ul>
+        </div>*@
+    <!--</div>
+                    <div class="auto-complete-place-container">
+                        <input type="submit" value="Search" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>-->
+
+
+
+
+
+    <br />
+    <div class="common-routes-container" data-v-9ae0c8e8">
+        <div class="title" data-v-9ae0c8e8>
+            <h2>Common Route</h2>
+        </div>
+        @*<h5 style="color:red">@ViewBag.msg</h5>*@
+
+
+
+        @*<div>
+                <form asp-action="Index" asp-controller="Home" enctype="multipart/form-data" method="post">
+                    <label>Search by Source&nbsp;&nbsp;</label>
+                    <select name="varLocal" asp-items="ViewBag.arr">
+                        <option>Choose your start point...</option>
+                    </select>
+                    <label>&nbsp;&nbsp;Search by Destination&nbsp;&nbsp;</label>
+                    <select name="varLocal2" asp-items="ViewBag.dep">
+                        <option>Choose your end point...</option>
+                    </select>
+                    <input type="submit" value="Search" class="btn btn-danger" />
+                </form>
+            </div>*@
+        <!-------table-------->
+
+        <div class="container">
+            <ul class="responsive-table">
+                <li class="table-header">
+                    <div class="col col-1">@Html.DisplayNameFor(model => model.TrainNo)</div>
+                    <div class="col col-2">@Html.DisplayNameFor(model => model.TrainName)</div>
+                    <div class="col col-3">@Html.DisplayNameFor(model => model.Source)</div>
+                    <div class="col col-4">@Html.DisplayNameFor(model => model.Destination)</div>
+                    <div class="col col-5">@Html.DisplayNameFor(model => model.Departure)</div>
+                    <div class="col col-6"></div>
+                </li>
+                @foreach (var item in Model)
+                {
+    <li class="table-row">
+        <div class="col col-1">@item.TrainNo</div>
+        <div class="col col-2">@item.TrainName</div>
+        <div class="col col-3">@item.Source</div>
+        <div class="col col-4">@item.Destination</div>
+        <div class="col col-5">@item.Departure.ToShortDateString()</div>
+        <div class="col col-6">
+            @Html.ActionLink("ViewDetails", "Details", "TrainDetails", new { varLocal = item.TrainNo }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
+
+            @*<a href="@Url.Action("Details", "TrainDetails", new {varLocal = item.TrainNo })">
+                    <span class="btn btn-primary btn-outline-primary btn-md">ViewDetails</span>
+                </a>*@
+            @if (ViewBag.username != null && item.Status == true && (item.Departure - DateTime.Now).TotalHours >= 4)
+            {
+@Html.ActionLink("Booking", "FindSeat", "PassengerDetails", new { varLocal = item.TrainNo, varLocal2 = 1 }, new { @class = "btn btn-outline-success btn-lg btn-block" }) @*<a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=item.TrainNo,varLocal2 = 1})">
+        <span class="btn btn-success btn-outline-success btn-md">Book a seat</span>
+    </a>*@}
+        </div>
+    </li>
+}
+            </ul>
+        </div>
+
+
+
+
+
+
+
+
+        <!---Them quan tri tai khoan -->
+        <br />
+        @if (ViewBag.role == "True" || ViewBag.username == "ADMIN")
+        {
+<div>
+
+</div>} @*@{ await Html.RenderPartialAsync("Quantri"); }*@
+
+    </div>
+
+
+    <div class="tabs-content" id="weather">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Check Weather For 5 NEXT Days</h2>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="col-md-12">
+                        <div class="weather-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="tabs clearfix" data-tabgroup="second-tab-group">
+                                        <li><a href="#monday" class="active">Monday</a></li>
+                                        <li><a href="#tuesday">Tuesday</a></li>
+                                        <li><a href="#wednesday">Wednesday</a></li>
+                                        <li><a href="#thursday">Thursday</a></li>
+                                        <li><a href="#friday">Friday</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12">
+                                    <section id="second-tab-group" class="weathergroup">
+                                        <div id="monday">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ho Chi Minh City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-03.png" alt="">
+                                                        </div>
+                                                        <span>32&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>26&deg;</span></li>
+                                                            <li>12PM <span>32&deg;</span></li>
+                                                            <li>6PM <span>28&deg;</span></li>
+                                                            <li>12AM <span>22&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ha Noi City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-02.png" alt="">
+                                                        </div>
+                                                        <span>28&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>20&deg;</span></li>
+                                                            <li>12PM <span>28&deg;</span></li>
+                                                            <li>6PM <span>26&deg;</span></li>
+                                                            <li>12AM <span>18&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Da Nang City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-01.png" alt="">
+                                                        </div>
+                                                        <span>33&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>26&deg;</span></li>
+                                                            <li>12PM <span>33&deg;</span></li>
+                                                            <li>6PM <span>29&deg;</span></li>
+                                                            <li>12AM <span>27&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tuesday">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ho Chi Minh City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-02.png" alt="">
+                                                        </div>
+                                                        <span>28&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>18&deg;</span></li>
+                                                            <li>12PM <span>27&deg;</span></li>
+                                                            <li>6PM <span>25&deg;</span></li>
+                                                            <li>12AM <span>17&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ha Noi City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-03.png" alt="">
+                                                        </div>
+                                                        <span>31&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>19&deg;</span></li>
+                                                            <li>12PM <span>28&deg;</span></li>
+                                                            <li>6PM <span>22&deg;</span></li>
+                                                            <li>12AM <span>18&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Da Nang City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-01.png" alt="">
+                                                        </div>
+                                                        <span>26&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>19&deg;</span></li>
+                                                            <li>12PM <span>26&deg;</span></li>
+                                                            <li>6PM <span>22&deg;</span></li>
+                                                            <li>12AM <span>20&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="wednesday">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ho Chi Minh City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-03.png" alt="">
+                                                        </div>
+                                                        <span>31&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>19&deg;</span></li>
+                                                            <li>12PM <span>28&deg;</span></li>
+                                                            <li>6PM <span>22&deg;</span></li>
+                                                            <li>12AM <span>18&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ha Noi City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-01.png" alt="">
+                                                        </div>
+                                                        <span>34&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>28&deg;</span></li>
+                                                            <li>12PM <span>34&deg;</span></li>
+                                                            <li>6PM <span>30&deg;</span></li>
+                                                            <li>12AM <span>29&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Da Nang City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-02.png" alt="">
+                                                        </div>
+                                                        <span>28&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>18&deg;</span></li>
+                                                            <li>12PM <span>27&deg;</span></li>
+                                                            <li>6PM <span>25&deg;</span></li>
+                                                            <li>12AM <span>17&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="thursday">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ho Chi Minh City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-01.png" alt="">
+                                                        </div>
+                                                        <span>27&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>21&deg;</span></li>
+                                                            <li>12PM <span>27&deg;</span></li>
+                                                            <li>6PM <span>22&deg;</span></li>
+                                                            <li>12AM <span>18&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ha Noi City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-02.png" alt="">
+                                                        </div>
+                                                        <span>28&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>18&deg;</span></li>
+                                                            <li>12PM <span>27&deg;</span></li>
+                                                            <li>6PM <span>25&deg;</span></li>
+                                                            <li>12AM <span>17&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Da Nang City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-03.png" alt="">
+                                                        </div>
+                                                        <span>31&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>19&deg;</span></li>
+                                                            <li>12PM <span>28&deg;</span></li>
+                                                            <li>6PM <span>22&deg;</span></li>
+                                                            <li>12AM <span>18&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="friday">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ho Chi Minh City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-03.png" alt="">
+                                                        </div>
+                                                        <span>33&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>28&deg;</span></li>
+                                                            <li>12PM <span>33&deg;</span></li>
+                                                            <li>6PM <span>29&deg;</span></li>
+                                                            <li>12AM <span>27&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Ha Noi City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-02.png" alt="">
+                                                        </div>
+                                                        <span>31&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>24&deg;</span></li>
+                                                            <li>12PM <span>31&deg;</span></li>
+                                                            <li>6PM <span>26&deg;</span></li>
+                                                            <li>12AM <span>23&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+                                                        <h6>Da Nang City</h6>
+                                                        <div class="weather-icon">
+                                                            <img src="img/weather-icon-01.png" alt="">
+                                                        </div>
+                                                        <span>28&deg;C</span>
+                                                        <ul class="time-weather">
+                                                            <li>6AM <span>24&deg;</span></li>
+                                                            <li>12PM <span>28&deg;</span></li>
+                                                            <li>6PM <span>26&deg;</span></li>
+                                                            <li>12AM <span>22&deg;</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-item first-service">
+                        <div class="service-icon"></div>
+                        <h4>Easy Booking At RailWay</h4>
+                        <p>With just a light touch, you can book tickets anywhere in Vietnam quickly without having to rush to the box office.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-item second-service">
+                        <div class="service-icon"></div>
+                        <h4>Unique Ideas</h4>
+                        <p>we are constantly improving and always aiming for the best service for passenger.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-item third-service">
+                        <div class="service-icon"></div>
+                        <h4>Best Support</h4>
+                        <p>Immediately contact Railway TAY for the fastest and best service for each of your trips</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="tabs-content" id="recommended-hotel">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Recommended RailWay For You</h2>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="col-md-12">
+                        <ul class="tabs clearfix" data-tabgroup="third-tab-group">
+                            <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+                            <li><a href="#livingroom" class="active">About RailWay <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="#suitroom">Class Option <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="#swimingpool">Class 3AC <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="#massage">Dining room <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="#fitness">Sleep room <i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="#event">Room Vip <i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <section id="third-tab-group" class="recommendedgroup">
+                        <div id="livingroom">
+                            <div class="text-content">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/3taEEQGSulA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div id="suitroom">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="owl-suiteroom" class="owl-carousel owl-theme">
+                                        <div class="item">
+                                            <div class="suiteroom-item">
+                                                <img src="img/suite-02.jpg" alt="">
+                                                <div class="text-content">
+                                                    <h4>Soft chair type 1</h4>
+                                                    <span>Class Two (1AC)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="suiteroom-item">
+                                                <img src="img/suite-01.jpg" alt="">
+                                                <div class="text-content">
+                                                    <h4>General chair</h4>
+                                                    <span>Genenral</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="suiteroom-item">
+                                                <img src="img/suite-03.jpg" alt="">
+                                                <div class="text-content">
+                                                    <h4>Soft chair type 2</h4>
+                                                    <span>Class two (2AC)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="swimingpool">
+                            <img src="img/swiming-pool.jpg" alt="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-content">
+                                        <h4>Vip chair</h4>
+                                        <span>Class three (3AC)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="massage">
+                            <img src="img/massage-service.jpg" alt="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-content">
+                                        <h4>Restaurant car</h4>
+                                        <span>Order Food to 24h - 48h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fitness">
+                            <img src="img/fitness-service.jpg" alt="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-content">
+                                        <h4>Sleeper train</h4>
+                                        <span>Full servise </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="event">
+                            <img src="img/evening-event.jpg" alt="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-content">
+                                        <h4>Bar car Vip</h4>
+                                        <span>Queen Restaurant</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <section id="most-visited">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Most Visited Places</h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="owl-mostvisited" class="owl-carousel owl-theme">
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-01.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>River Views</h4>
+                                    <span>District 1 - Tp.HCM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-02.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Ho Guom Lake</h4>
+                                    <span>Ha Noi City</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-03.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Hue Royal</h4>
+                                    <span>Hue City</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-04.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Dragon Bridge</h4>
+                                    <span>Da Nang</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-02.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Ho Guom Lake</h4>
+                                    <span>Ha Noi City</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-01.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>River Views</h4>
+                                    <span>District 1 - Tp.HCM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-03.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Phasellus pharetra</h4>
+                                    <span>Paris</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-04.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Dragon Bridge</h4>
+                                    <span>Da Nang</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-01.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>River Views</h4>
+                                    <span>District 1 - Tp.HCM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item col-md-12">
+                            <div class="visited-item">
+                                <img src="img/place-02.jpg" alt="">
+                                <div class="text-content">
+                                    <h4>Ho Guom Lake</h4>
+                                    <span>Ha Noi City</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="primary-button">
+                        <a href="#" class="scroll-top">Back To Top</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <p>Copyright &copy; 2022 Product of RailWay TAY</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="~/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="~/js/vendor/bootstrap.min.js"></script>
+
+    <script src="~/js/datepicker.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script src="~/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+            // navigation click actions
+            $('.scroll-link').on('click', function (event) {
+                event.preventDefault();
+                var sectionID = $(this).attr("data-id");
+                scrollToID('#' + sectionID, 750);
+            });
+            // scroll to top action
+            $('.scroll-top').on('click', function (event) {
+                event.preventDefault();
+                $('html, body').animate({ scrollTop: 0 }, 'slow');
+            });
+            // mobile nav toggle
+            $('#nav-toggle').on('click', function (event) {
+                event.preventDefault();
+                $('#main-nav').toggleClass("open");
+            });
+        });
+        // scroll function
+        function scrollToID(id, speed) {
+            var offSet = 0;
+            var targetOffset = $(id).offset().top - offSet;
+            var mainNav = $('#main-nav');
+            $('html,body').animate({ scrollTop: targetOffset }, speed);
+            if (mainNav.hasClass("open")) {
+                mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+                mainNav.removeClass("open");
+            }
+        }
+        if (typeof console === "undefined") {
+            console = {
+                log: function () { }
+            };
+        }</script>
+</body>
+
+<!-- Mirrored from www.tooplate.com/templates/2093_flight/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 May 2018 10:39:55 GMT -->
+</html>

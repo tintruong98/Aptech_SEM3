@@ -1,0 +1,75 @@
+﻿@model RailwaySystem.Models.PassengerDetails
+@addTagHelper *, Microsoft.AspNetCore.Razor.TagHelpers
+@addTagHelper *, RailwaySystem
+
+@{
+    ViewData["Title"] = "PrintQRCode";
+}
+
+<h3 class="alert-success">Details Ticket</h3>
+<br />
+<p>
+    <a href="@Url.Action("Index", "Home")">
+        <span class="btn btn-outline-primary">Home</span>
+    </a>
+    <a href="@Url.Action("PrintTickets", "PassengerDetails",new {varLocal=ViewBag.userid})">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+
+<h5 style="color:red">Ticket information</h5>
+<hr />
+<table width="100%" cellpadding="6">
+    <tr>
+        <td width="20%">First and last name:</td>
+        <td width="30">@Model.Name</td>
+        <td width="50%" rowspan="9">
+            <qrcode content="@ViewBag.stringcode" width="200" height="200"></qrcode>
+        </td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td>@ViewBag.gender</td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>@Model.PhoneNo</td>
+    </tr>
+    <tr>
+        <td>Address Email:</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>Train:</td>
+        <td>@ViewBag.trainname</td>
+    </tr>
+    <tr>
+        <td>Station go:</td>
+        <td>@Model.Source</td>
+    </tr>
+    <tr>
+        <td>Arrivals:</td>
+        <td>@Model.Destination</td>
+    </tr>
+    <tr>
+        <td>Departure:</td>
+        <td>@Model.Departure</td>
+    </tr>
+    <tr>
+        <td>Compartment:</td>
+        <td>@Model.Compartment</td>
+    </tr>
+    <tr>
+        <td>Seat Code:</td>
+        <td>@Model.SeatCode</td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>@Model.Price</td>
+        <td>
+            <a href="@Url.Action("ExportToPdf", "PassengerDetails",new {varLocal=Model.PNR})">
+                <span class="btn btn-outline-warning">Export to Pdf</span>
+            </a>
+        </td>
+    </tr>
+</table>

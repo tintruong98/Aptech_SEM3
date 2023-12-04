@@ -1,0 +1,57 @@
+﻿@model IEnumerable<RailwaySystem.Models.Disprice>
+
+@{
+    ViewData["Title"] = "ListDisprice";
+}
+<link rel="stylesheet" href="~/css/TableDisprice.css" />
+<h3 class="alert-success">List The cost of the distance between two stations</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create", "Disprice")">
+        <span class="btn btn-outline-primary">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">@Html.DisplayNameFor(model => model.Source)</div>
+            <div class="col col-2">@Html.DisplayNameFor(model => model.Destination)</div>
+            <div class="col col-3">@Html.DisplayNameFor(model => model.Price)</div>
+            <div class="col col-4"></div>
+
+        </li>
+        @foreach (var item in Model)
+        {
+    <li class="table-row">
+        <div class="col col-1">@Html.DisplayFor(modelItem => item.Source)</div>
+        <div class="col col-2">@Html.DisplayFor(modelItem => item.Destination)</div>
+        <div class="col col-2">@Html.DisplayFor(modelItem => item.Price)</div>
+        <div class="col col-3">
+            @Html.ActionLink("Edit", "Edit", new { varLocal = item.Id }, new { @class = "btn btn-outline-warning" })
+            @Html.ActionLink("Delete", "Delete", new { varLocal = item.Id }, new { @class = "btn btn-outline-danger" })
+        </div>
+
+    </li>
+        }
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

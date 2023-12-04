@@ -1,0 +1,77 @@
+﻿@model IEnumerable<RailwaySystem.Models.SeatDiagram>
+
+@{
+    ViewData["Title"] = "ListSeatDiagram";
+}
+
+<h3 class="alert-success">List Seat Diagram</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create", "SeatDiagram")">
+        <span class="btn btn-outline-primary">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compartment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { varLocal = item.Id }, new { @class = "btn btn-outline-warning" })
+                    @Html.ActionLink("Delete", "Delete", new { varLocal = item.Id }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

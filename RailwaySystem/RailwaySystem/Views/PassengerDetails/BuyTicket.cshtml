@@ -1,0 +1,170 @@
+﻿@model IEnumerable<RailwaySystem.Models.SeatDiagram>
+
+@{
+    ViewData["Title"] = "BuyTicket";
+}
+
+<h3 class="alert-info">Selected seat class list</h3>
+<br />
+<p>
+    <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = ViewBag.compartment})">
+        <span class="btn btn-success">Back</span>
+    </a>
+</p>
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<h5 style="color:red">Ticket information</h5>
+<table width="100%">
+    <tr>
+        <td width="20%">First and last name:</td>
+        <td width="30">@ViewBag.name</td>
+        <td width="50%" rowspan="8">
+            <hr />
+            <h5 style="color:red">CHOOSE PAYING BANK</h5>
+            <hr />
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Techcombank
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Vietcombank
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Vietinbank
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    BIDV
+                </label>
+            </div>
+            @if (ViewBag.msg == null)
+            {
+                <hr />
+                <div>
+                    <p><a style="color:blueviolet">Payment content: Buy train tickets></a></p>
+                    <p><a style="color:blue">Amount of money:&nbsp;</a><a><span class="btn btn-warning"><strong>@ViewBag.sum&nbsp;VNĐ</strong></span></a></p>
+                </div>
+                @if (ViewBag.ok == null)
+                {
+                    <div>
+                        <a href="@Url.Action("BuyTicket", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = ViewBag.compartment,payment=1})">
+                            <span class="btn btn-danger">Ticket payment</span>
+                        </a>
+                    </div>
+                }
+                @if (ViewBag.ok == "OK")
+                {
+                    <hr />
+                    <div>
+                        <p><a style="color:brown">Thank you for using the service. Tickets have been successfully paid. Please select Print Tickets button to get QR Code for ticket control when boarding.</a></p>
+                    </div>
+                    <div>
+                        <a href="@Url.Action("PrintTickets", "PassengerDetails", new {varlocal=ViewBag.userid})">
+                            <span class="btn btn-success">Print Tickets</span>
+                        </a>
+                    </div>
+                }
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td>@ViewBag.gender</td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>@ViewBag.phone</td>
+    </tr>
+    <tr>
+        <td>Address Email:</td>
+        <td>@ViewBag.email</td>
+    </tr>
+    <tr>
+        <td>Train:</td>
+        <td>@ViewBag.trainname</td>
+    </tr>
+    <tr>
+        <td>Station go:</td>
+        <td>@ViewBag.source</td>
+    </tr>
+    <tr>
+        <td>Arrivals:</td>
+        <td>@ViewBag.destination</td>
+    </tr>
+    <tr>
+        <td>Departure:</td>
+        <td>@ViewBag.departure</td>
+    </tr>
+</table>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compartment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4" align="center"><a class="btn btn-info btn-block" style="color:white"><strong>Total</strong></a></td>
+            <td align="left"><a class="btn btn-warning"><strong>@ViewBag.sum&nbsp;VNĐ</strong></a></td>
+            <td>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>

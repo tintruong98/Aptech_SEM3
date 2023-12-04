@@ -1,0 +1,40 @@
+﻿@model RailwaySystem.Models.Disprice
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3 class="alert-success">Delete</h3>
+<br />
+<h4>Are you sure you want to delete this?</h4>
+<div>
+    <h4>Disprice</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+    <form asp-action="Delete" enctype="multipart/form-data" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete?')" />
+        <a href="@Url.Action("ListDisprice", "Disprice")">
+            <span class="btn btn-outline-primary">Back</span>
+        </a>
+    </form>
+</div>

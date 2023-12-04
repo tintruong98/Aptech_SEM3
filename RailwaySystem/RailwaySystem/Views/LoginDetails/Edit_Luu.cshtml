@@ -1,0 +1,136 @@
+﻿@model RailwaySystem.Models.LoginDetails
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <h3 class="alert-success">Change the account information</h3>
+    <br />
+    <a href="@Url.Action("ListLoginDetails", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+    <hr />
+    <h5 style="color:red">@ViewBag.msg</h5>
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="images/form-img.jpg" alt="">
+                    <div class="signup-img-content">
+                        <h4>Change now </h4>
+                        <p>while seats are available !</p>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <form asp-action="Edit" asp-controller="LoginDetails" enctype="multipart/form-data" method="post">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label asp-for="UserId" class="control-label"></label>
+                                    <input asp-for="UserId" class="form-control" readonly />
+                                    <span asp-validation-for="UserId" class="text-danger"></span>
+                                </div>
+                                @if (ViewBag.username == "ADMIN")
+                                {
+                                    <div class="form-input">
+                                        <label asp-for="Username" class="control-label"></label>
+                                        <input asp-for="Username" class="form-control" readonly />
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-input">
+                                        <label asp-for="Username" class="control-label"></label>
+                                        <input asp-for="Username" class="form-control" />
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+                                }
+                                <div class="form-input">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-input">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input asp-for="Password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-input">
+                                    <label asp-for="DateOfBirth" class="control-label"></label>
+                                    <input asp-for="DateOfBirth" class="form-control" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+
+                                <div class="select-list">
+                                    <label asp-for="Gender" class="control-label"></label>
+                                    <select asp-for="Gender" value="@Model.Gender">
+                                        <option value=true>Male</option>
+                                        <option value=false>Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-input">
+                                    <label asp-for="PhoneNo" class="control-label"></label>
+                                    <input asp-for="PhoneNo" class="form-control" />
+                                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                </div>
+                                <div class="form-input">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        @if (ViewBag.username == "ADMIN")
+                                        {
+                                            <input class="form-check-input" asp-for="Role" /> @Html.DisplayNameFor(model => model.Role)
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" asp-for="Role" hidden />
+                                        }
+                                    </label>
+                                </div>
+                                <div class="form-submit">
+                                    <input type="submit" value="Save" name="EditReset" class="btn btn-outline-warning" />
+                                    <input type="submit" value="Reset Password" name="EditReset" class="btn btn-outline-success" onclick="return confirm('Are you sure you want to reset password?')" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/nouislider/nouislider.min.js"></script>
+    <script src="vendor/wnumb/wNumb.js"></script>
+    <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

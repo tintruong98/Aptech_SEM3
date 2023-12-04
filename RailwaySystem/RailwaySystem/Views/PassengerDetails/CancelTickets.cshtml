@@ -1,0 +1,130 @@
+﻿@model IEnumerable<RailwaySystem.Models.PassengerDetails>
+
+@{
+    ViewData["Title"] = "ListPassengerDetails";
+}
+<link rel="stylesheet" href="~/css/fontAwesome.css">
+<link rel="stylesheet" href="~/css/TableCancel.css" />
+<h3 class="alert-success">List Passenger Details</h3>
+<br />
+<p>
+    <a href="@Url.Action("Index", "Home")">
+        <span class="btn btn-outline-success">Home</span>
+    </a>
+</p>
+<p>
+    <a style="color:blue;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Passengers pay the ticket 4 hours before the train departure time.</a>
+</p>
+<hr />
+<div>
+    <form asp-action="CancelTickets" asp-controller="PassengerDetails">
+        <label>Search by Ticket ID/Train ID&nbsp;&nbsp;</label>
+        <div class="input-group col-lg-6 mb-4">
+
+            <input type="text" name="varLocal2" class="form-control bg-white border-left-0 border-md" />
+            <input type="text" name="varLocal" hidden value="@ViewBag.userid" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" class="btn btn-outline-info" />
+        </div>
+        
+        
+    </form>
+</div>
+<hr />
+<h5 class="alert-info">&nbsp;&nbsp;The train is about to depart</h5>
+<!--bang moi-->
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">@Html.DisplayNameFor(model => model.UserID)</div>
+            <div class="col col-2">@Html.DisplayNameFor(model => model.Name)</div>
+            <div class="col col-3">@Html.DisplayNameFor(model => model.Source)</div>
+            <div class="col col-4">@Html.DisplayNameFor(model => model.Destination)</div>
+            <div class="col col-5">@Html.DisplayNameFor(model => model.Departure)</div>
+            <div class="col col-6">@Html.DisplayNameFor(model => model.TrainNo)</div>
+            <div class="col col-7">CAR</div>
+            <div class="col col-8">@Html.DisplayNameFor(model => model.SeatCode)</div>
+            <div class="col col-9">@Html.DisplayNameFor(model => model.Price)</div>
+            <div class="col col-10"></div>
+
+        </li>
+        @foreach (var item in Model)
+        {
+            if ((item.Departure - DateTime.Now).TotalMinutes > 0)
+            {
+                <li class="table-row">
+                    <div class="col col-1">@Html.DisplayFor(modelItem => item.UserID)</div>
+                    <div class="col col-2">@Html.DisplayFor(modelItem => item.Name)</div>
+                    <div class="col col-3">@Html.DisplayFor(modelItem => item.Source)</div>
+                    <div class="col col-4">@Html.DisplayFor(modelItem => item.Destination)</div>
+                    <div class="col col-5">@Html.DisplayFor(modelItem => item.Departure)</div>
+                    <div class="col col-6">@Html.DisplayFor(modelItem => item.TrainNo)</div>
+                    <div class="col col-7">@Html.DisplayFor(modelItem => item.Compartment)</div>
+                    <div class="col col-8">@Html.DisplayFor(modelItem => item.SeatCode)</div>
+                    <div class="col col-9">@Html.DisplayFor(modelItem => item.Price)</div>
+                    <div class="col col-10">
+                        @Html.ActionLink("Delete", "DeleteTickets", new { varLocal = item.PNR }, new { @class = "btn btn-outline-danger btn-md" })
+
+                    </div>
+
+                </li>
+            }
+        }
+
+    </ul>
+</div>
+<hr />
+<h5 class="alert-info">&nbsp;&nbsp;The train has departed</h5>
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">@Html.DisplayNameFor(model => model.UserID)</div>
+            <div class="col col-2">@Html.DisplayNameFor(model => model.Name)</div>
+            <div class="col col-3">@Html.DisplayNameFor(model => model.Source)</div>
+            <div class="col col-4">@Html.DisplayNameFor(model => model.Destination)</div>
+            <div class="col col-5">@Html.DisplayNameFor(model => model.Departure)</div>
+            <div class="col col-6">@Html.DisplayNameFor(model => model.TrainNo)</div>
+            <div class="col col-7">CAR</div>
+            <div class="col col-8">@Html.DisplayNameFor(model => model.SeatCode)</div>
+            <div class="col col-9">@Html.DisplayNameFor(model => model.Price)</div>
+            <div class="col col-10"></div>
+
+        </li>
+        @foreach (var item in Model)
+        {
+            if ((item.Departure - DateTime.Now).TotalMinutes <= 0)
+            {
+                <li class="table-row">
+                    <div class="col col-1">@Html.DisplayFor(modelItem => item.UserID)</div>
+                    <div class="col col-2">@Html.DisplayFor(modelItem => item.Name)</div>
+                    <div class="col col-3">@Html.DisplayFor(modelItem => item.Source)</div>
+                    <div class="col col-4">@Html.DisplayFor(modelItem => item.Destination)</div>
+                    <div class="col col-5">@Html.DisplayFor(modelItem => item.Departure)</div>
+                    <div class="col col-6">@Html.DisplayFor(modelItem => item.TrainNo)</div>
+                    <div class="col col-7">@Html.DisplayFor(modelItem => item.Compartment)</div>
+                    <div class="col col-8">@Html.DisplayFor(modelItem => item.SeatCode)</div>
+                    <div class="col col-9">@Html.DisplayFor(modelItem => item.Price)</div>
+                    <div class="col col-10">
+                        <i class="fa fa-times fa-3x" aria-hidden="true"></i>
+
+                    </div>
+
+                </li>
+            }
+        }
+
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

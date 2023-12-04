@@ -1,0 +1,13 @@
+﻿<body>
+    <div class="container">
+        <h3 class="alert-success">File download</h3>
+        <br />
+        <a href="@Url.Action("PrintTickets", "PassengerDetails" ,new {varLocal=ViewBag.userid})">
+            <span class="btn btn-primary btn-outline-primary">Back</span>
+        </a>
+        <hr />
+        <div>
+            <iframe src="~/RailwaySystem/Ticket_Railway.pdf" scrolling="auto" frameborder="0" style="width:100%;Height:1150px;border: none;"></iframe>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<RailwaySystem.Models.StationDep>
+
+@{
+    ViewData["Title"] = "ListStationDep";
+}
+<link rel="stylesheet" href="~/css/tableStation.css" />
+<h3 class="alert-success">List Station Departure</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create", "StationDep")">
+        <span class="btn btn-outline-success">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-primary">Back</span>
+    </a>
+</p>
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">@Html.DisplayNameFor(model => model.StationCode)</div>
+            <div class="col col-2">@Html.DisplayNameFor(model => model.StationName)</div>
+            <div class="col col-3">Control</div>
+
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="table-row">
+                <div class="col col-1">@Html.DisplayFor(modelItem => item.StationCode)</div>
+                <div class="col col-2">@Html.DisplayFor(modelItem => item.StationName)</div>
+                <div class="col col-3">
+                    @Html.ActionLink("Edit", "Edit", new { varLocal = item.StationCode }, new { @class = "btn btn-outline-warning btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { varLocal = item.StationCode }, new { @class = "btn btn-outline-danger btn-sm" })
+                </div>
+
+            </li>
+        }
+    </ul>
+</div>
+

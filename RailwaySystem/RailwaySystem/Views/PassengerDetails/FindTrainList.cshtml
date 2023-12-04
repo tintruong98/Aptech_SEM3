@@ -1,0 +1,135 @@
+﻿@model IEnumerable<RailwaySystem.Models.TrainDetails>
+
+@{
+    ViewData["Title"] = "FindTrainDetails";
+}
+
+<link rel="stylesheet" href="~/css/TableIndex.css">
+
+<h4 class="alert-info"><a style="color:darkblue">&nbsp;&nbsp;&equiv;&nbsp;Search results for a list of trains</a></h4>
+<hr />
+<a href="@Url.Action("Index", "Home")">
+    <span class="btn btn-outline-primary">Back</span>
+</a>
+ &nbsp;&nbsp;<a style="color:blue;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Passengers pay the ticket 4 hours before the train departure time.</a>
+<hr />
+
+@if (ViewBag.ticketbuy != null)
+{
+    <a style="color:red;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">&nbsp;&nbsp;You have paid for @ViewBag.ticketbuy tickets. Check the train ticket to see if there is a duplicate ticket. If you have not printed tickets, select the menu Print ticket</a>
+}
+
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<div class="container">
+    <form asp-action="FindTrainList" asp-controller="PassengerDetails" enctype="multipart/form-data" method="post">
+        <table align="left">
+            <tr>
+                <td align="center">From</td>
+                <td></td>
+                <td align="center">To</td>
+                <td></td>
+                <td align="center">Date</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    
+
+                    <div class="input-group col-lg-12 mb-4">
+                        
+                        <select name="varLocal" asp-items="ViewBag.arr" class="form-control custom-select bg-white border-left-0 border-md">
+                            <option>Choose your start point...</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <img src="~/images/selectbox2.png" alt="change" width="30" height="30" />&nbsp;&nbsp;&nbsp;
+                </td>
+                
+                <td>
+                    
+
+                    <div class="input-group col-lg-12 mb-4">
+                        
+                        <select name="varLocal2" asp-items="ViewBag.dep" class="form-control custom-select bg-white border-left-0 border-md">
+                            <option>Choose your end point...</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <img src="~/images/selectbox2.png" alt="change" width="30" height="30" />&nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                    <div class="input-group col-lg-12 mb-4">
+                        
+
+                        <input placeholder="Date of Birth" id="Text1" name="departure" type="date" class="form-control bg-white border-left-0 border-md" />
+
+                    </div>
+                </td>
+                <td>
+                    <input type="submit" value="Search" class="btn btn-outline-danger" />
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+        </table>
+
+    </form>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">@Html.DisplayNameFor(model => model.TrainNo)</div>
+            <div class="col col-2">@Html.DisplayNameFor(model => model.TrainName)</div>
+            <div class="col col-3">@Html.DisplayNameFor(model => model.Source)</div>
+            <div class="col col-4">@Html.DisplayNameFor(model => model.Destination)</div>
+            <div class="col col-5">@Html.DisplayNameFor(model => model.Departure)</div>
+            <div class="col col-6"></div>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="table-row">
+                <div class="col col-1">@item.TrainNo</div>
+                <div class="col col-2">@item.TrainName</div>
+                <div class="col col-3">@item.Source</div>
+                <div class="col col-4">@item.Destination</div>
+                <div class="col col-5">@item.Departure.ToShortDateString()</div>
+                <div class="col col-6">
+                    @Html.ActionLink("ViewDetails", "Details", "TrainDetails", new { varLocal = item.TrainNo }, new { @class = "btn btn-outline-primary btn-md" })
+
+                    @*<a href="@Url.Action("Details", "TrainDetails", new {varLocal = item.TrainNo })">
+                            <span class="btn btn-primary btn-outline-primary btn-md">ViewDetails</span>
+                        </a>*@
+                    @if (ViewBag.username != null && item.Status == true && (item.Departure - DateTime.Now).TotalHours >= 4)
+                    {
+                        @Html.ActionLink("Book a seat", "FindSeat", "PassengerDetails", new { varLocal = item.TrainNo, varLocal2 = 1 }, new { @class = "btn btn-outline-success btn-md" }) @*<a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=item.TrainNo,varLocal2 = 1})">
+                                <span class="btn btn-success btn-outline-success btn-md">Book a seat</span>
+                            </a>*@}
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,240 @@
+﻿@model IEnumerable<RailwaySystem.Models.SeatDiagram>
+
+@{
+    ViewData["Title"] = "FindSeat";
+}
+
+<h4 class="alert-info"><a style="color:darkblue">&nbsp;&nbsp;&equiv;&nbsp;Seating chart for each passenger car</a></h4>
+<hr />
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<table cellpadding="8">
+    <tr>
+        <td><a class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        <td>Empty seat</td>
+        <td><a class="btn btn-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        <td>Selected seat</td>
+        <td><a class="btn btn-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        <td>Seats are waiting</td>
+        <td><a class="btn btn-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+        <td>Paid seats</td>
+    </tr>
+</table>
+<hr />
+<table align="center" width="100%"
+    <tr>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 1})">
+                <span class="btn btn-warning">Car 1</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 2})">
+                <span class="btn btn-warning">Car 2</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 3})">
+                <span class="btn btn-warning">Car 3</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 4})">
+                <span class="btn btn-warning">Car 4</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 5})">
+                <span class="btn btn-warning">Car 5</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 6})">
+                <span class="btn btn-warning">Car 6</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 7})">
+                <span class="btn btn-warning">Car 7</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 8})">
+                <span class="btn btn-warning">Car 8</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 9})">
+                <span class="btn btn-warning">Car 9</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindSeat", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = 10})">
+                <span class="btn btn-warning">Car 10</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("BuyTicket", "PassengerDetails", new {varlocal=ViewBag.trainno,varLocal2 = ViewBag.compartment,payment=0})">
+                <span class="btn btn-danger">Buy ticket</span>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("FindTrainList", "PassengerDetails", new { varLocal=ViewBag.source,varLocal2=ViewBag.destination,departure=ViewBag.departure})">
+                <span class="btn btn-info">Back</span>
+            </a>
+        </td>
+    </tr>
+</table>
+@foreach (var item in Model)
+{
+    if (item.SeatCode == "1AC")
+    {
+        ViewBag.firstclass = item.Price;
+    }
+    if (item.SeatCode == "2AC")
+    {
+        ViewBag.secondclass = item.Price;
+    }
+    if (item.SeatCode == "3AC")
+    {
+        ViewBag.thỉrdclass = item.Price;
+    }
+    if (item.SeatCode == "SLE")
+    {
+        ViewBag.sleeproom = item.Price;
+    }
+    if (item.SeatCode == "GNE")
+    {
+        ViewBag.general = item.Price;
+    }
+}
+@for (int ii = 1; ii <= 5; ii++)
+{
+    switch (ii)
+    {
+        case 1:
+            ViewBag.hang = "First Class - Ticket price: " + ViewBag.firstclass;
+            ViewBag.seat = "1AC";
+            break;
+        case 2:
+            ViewBag.hang = "Second Class - Ticket price: " + ViewBag.secondclass;
+            ViewBag.seat = "2AC";
+            break;
+        case 3:
+            ViewBag.hang = "Third Class - Ticket price: " + ViewBag.thỉrdclass;
+            ViewBag.seat = "3AC";
+            break;
+        case 4:
+            ViewBag.hang = "SleepRoom - Ticket price: " + ViewBag.sleeproom;
+            ViewBag.seat = "SLE";
+            break;
+        case 5:
+            ViewBag.hang = "General - Ticket price: " + ViewBag.general;
+            ViewBag.seat = "GNE";
+            break;
+        default:
+            break;
+    }
+    <hr />
+    <a href="#"><span class="btn btn-primary">@ViewBag.hang</span></a>
+    <table border="0">
+        <tr>
+            <td>
+                @foreach (var item in Model)
+                {
+                    if (item.SeatCode == ViewBag.seat)
+                    {
+                        for (int i = 1; i <= 64; i++)
+                        {
+                            if (item.SeatOrder == i)
+                            {
+                                if (item.Status == true)
+                                {
+                                    if (item.UserId > 0)
+                                    {
+                                        if (item.UserId.Equals(int.Parse(ViewBag.userid)))
+                                        {
+                                            <a href="@Url.Action("SetSeat", "PassengerDetails", new {id=item.Id,trainno=item.TrainNo,compartment=item.Compartment,seatcode=item.SeatCode,seatorder=item.SeatOrder,price=item.Price,userid=0,status=item.Status})">
+                                                <span class="btn btn-info">@item.SeatCode@item.SeatOrder</span>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#"><span class="btn btn-warning">@item.SeatCode@item.SeatOrder</span></a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("SetSeat", "PassengerDetails", new {id=item.Id,trainno=item.TrainNo,compartment=item.Compartment,seatcode=item.SeatCode,seatorder=item.SeatOrder,price=item.Price,userid=ViewBag.userid,status=item.Status})">
+                                            <span class="btn btn-success">@item.SeatCode@item.SeatOrder</span>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a href="#"><span class="btn btn-danger">@item.SeatCode@item.SeatOrder</span></a>
+                                }
+                            }
+                        }
+                    }
+                }
+            </td>
+        </tr>
+    </table>
+}
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Compartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Compartment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

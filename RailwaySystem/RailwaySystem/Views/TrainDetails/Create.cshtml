@@ -1,0 +1,86 @@
+﻿@model RailwaySystem.Models.TrainDetails
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3 class="alert-success">Add new TrainDetails</h3>
+<br />
+
+<a href="@Url.Action("ListTrainDetails", "TrainDetails")">
+    <span class="btn btn-outline-primary">Back</span>
+</a>
+<hr />
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TrainName" class="control-label"></label>
+                <input asp-for="TrainName" class="form-control" />
+                <span asp-validation-for="TrainName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Source" class="control-label"></label>
+                <select asp-for="Source" asp-items="ViewBag.arr">
+                    <option>---Selected---</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destination" class="control-label"></label>
+                <select asp-for="Destination" asp-items="ViewBag.dep">
+                    <option>---Selected---</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Departure" class="control-label"></label>
+                <input asp-for="Departure" class="form-control" />
+                <span asp-validation-for="Departure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoOfCompartment" class="control-label"></label>
+                <input asp-for="NoOfCompartment" class="form-control" />
+                <span asp-validation-for="NoOfCompartment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstClass" class="control-label"></label>
+                <input asp-for="FirstClass" class="form-control" />
+                <span asp-validation-for="FirstClass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondClass" class="control-label"></label>
+                <input asp-for="SecondClass" class="form-control" />
+                <span asp-validation-for="SecondClass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdClass" class="control-label"></label>
+                <input asp-for="ThirdClass" class="form-control" />
+                <span asp-validation-for="ThirdClass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SleepRoom" class="control-label"></label>
+                <input asp-for="SleepRoom" class="form-control" />
+                <span asp-validation-for="SleepRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="General" class="control-label"></label>
+                <input asp-for="General" class="form-control" />
+                <span asp-validation-for="General" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

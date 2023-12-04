@@ -1,0 +1,150 @@
+﻿@model RailwaySystem.Models.LoginDetails
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href="~/css/fontAwesome.css">
+<h3 class="alert-success">Change the account information</h3>
+<br />
+<a href="@Url.Action("ListLoginDetails", "LoginDetails")">
+    <span class="btn btn-outline-success">Back</span>
+</a>
+<hr />
+<h5 style="color:red">@ViewBag.msg</h5>
+
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="https://bootstrapious.com/i/snippets/sn-registeration/illustration.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <h1>Change Account Infomation</h1>
+            <p class="font-italic text-muted">
+                Snippet By <a href="http://RailwaySystem.ddns.net" class="text-muted">
+                    <u>RailwaySystem</u>
+                </a>
+            </p>
+        </div>
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form asp-action="Edit" asp-controller="LoginDetails" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <input placeholder="UserId" asp-for="UserId" class="form-control bg-white border-left-0 border-md" readonly />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        @if (ViewBag.username == "ADMIN")
+                        {
+                            <input placeholder="Username" asp-for="Username" class="form-control bg-white border-left-0 border-md" readonly />
+                        }
+                        else
+                        {
+                            <input placeholder="Username" asp-for="Username" class="form-control bg-white border-left-0 border-md" />
+                        }
+                    </div>
+                    <!--Name -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <input placeholder="Your Name" asp-for="Name" class="form-control bg-white border-left-0 border-md" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <!-- Password -->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        <input asp-for="Password" placeholder="Password" class="form-control bg-white border-left-0 border-md" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <!-- DateOfBirth -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-birthday-cake text-muted"></i>
+                            </span>
+                        </div>
+                        <input placeholder="Date of Birth" asp-for="DateOfBirth" class="form-control bg-white border-left-0 border-md" />
+                    </div>
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    <!-- Gender -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-black-tie text-muted"></i>
+                            </span>
+                        </div>
+                        <select asp-for="Gender" value="@Model.Gender" class="form-control custom-select bg-white border-left-0 border-md">
+                            <option value=true>Male</option>
+                            <option value=false>Female</option>
+                        </select>
+                    </div>
+                    <!-- Phone Number -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-phone-square text-muted"></i>
+                            </span>
+                        </div>
+                        <input placeholder="Phone Number" asp-for="PhoneNo" class="form-control bg-white border-md border-left-0 pl-3" />
+
+                    </div>
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                    <!-- Email Address -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-muted"></i>
+                            </span>
+                        </div>
+                        <input placeholder="Email Address" asp-for="Email" class="form-control bg-white border-left-0 border-md" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <!-- Role -->
+                    @if (ViewBag.username == "ADMIN")
+                    {
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-user-secret text-muted"></i>
+                                </span>
+                            </div>
+                            <input placeholder="Role" asp-for="Role" class="form-control bg-white border-left-0 border-md" />
+                        </div>
+                    }
+                    else
+                    {
+                        <input class="form-check-input" asp-for="Role" hidden />
+                    }
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                        <input type="submit" value="Save your change" name="EditReset" class="btn btn-primary btn-block py-2 font-weight-bold" />
+                        <input type="submit" value="Reset Password" name="EditReset" class="btn btn-success btn-block py-2 font-weight-bold" onclick="return confirm('Are you sure you want to reset password?')" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

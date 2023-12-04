@@ -1,0 +1,101 @@
+﻿@model IEnumerable<RailwaySystem.Models.LoginDetails>
+
+@{
+    ViewData["Title"] = "ListLoginDetails";
+}
+
+<h3 class="alert-success">List LoginDetails</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create", "LoginDetails")">
+        <span class="btn btn-outline-primary">Add new</span>
+    </a>
+    <a href="@Url.Action("Quantri", "LoginDetails")">
+        <span class="btn btn-outline-success">Back</span>
+    </a>
+</p>
+<div>
+    <form asp-action="ListLoginDetails" asp-controller="LoginDetails">
+        <label>Search by Name&nbsp;&nbsp;</label>
+        <input type="text" name="varLocal" />
+        <input type="submit" value="Search" class="btn btn-outline-info" />
+    </form>
+</div>
+<br />
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @if (item.Gender){<a>Male</a>}else{<a>Female</a>}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @if (item.Username == "ADMIN")
+                    {
+                        @if (ViewBag.username == "ADMIN")
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { varLocal = item.UserId }, new { @class = "btn btn-outline-warning" })
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-outline-dark">Edit</a>
+                        }
+                        <a>&nbsp;&nbsp;</a>
+                        <a href="#" class="btn btn-outline-dark">Delete</a>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { varLocal = item.UserId }, new { @class = "btn btn-outline-warning" })
+                        <a>&nbsp;&nbsp;</a>
+                        @Html.ActionLink("Delete", "Delete", new { varLocal = item.UserId }, new { @class = "btn btn-outline-danger" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
